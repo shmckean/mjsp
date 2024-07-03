@@ -14,6 +14,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js" integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script> 
 function addRow() {
@@ -43,7 +44,7 @@ function addRow() {
 	options: journal_list,
 	create: false
    });
-}
+} else { return alert("This form only supports up to 20 tiers. Consider grouping similar journals into shared tiers."); }
 }
 </script>
 
@@ -119,6 +120,15 @@ $(function() {
 	</p>
 	<h2>how to submit</h2>
 	<p>
+	The poll is located at the bottom of this page. 
+	You must list at least one research area in which you work &mdash; the options correspond to the <a href="https://arxiv.org/archive/math">arXiv's math categories</a>.
+	You can then group journals in up to 20 tiers.
+	There are no guidelines on how many journals to select; simply give the personal ranking you use when evaluating journals.
+	</p>
+	<p>
+	The available journals are those currently indexed by <a href="https://zbmath.org/">zbMATH</a>.
+	If you notice a typo or a missing journal, please contact me.
+	<p>
 	In order to submit a response, please email <a data-name="mckean" data-domain="math.byu" data-tld="edu" href="#" class="cryptedmail" onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld"></a> from an official email address with your zbMATH Author ID (e.g. <a href="https://zbmath.org/authors/erdos.pal">erdos.pal</a>). The subject of the email should be "mjsp: submission request".
 	</p>
 
@@ -155,9 +165,11 @@ $(function() {
 		<option name="math.DG">math.DG (Differential Geometry)</option>
 		<option name="math.DS">math.DS (Dynamical Systems)</option>
 		<option name="math.FA">math.FA (Functional Analysis)</option>
+		<option name="math.GM">math.GM (General Mathematics)</option>
 		<option name="math.GN">math.GN (General Topology)</option>
 		<option name="math.GR">math.GR (Group Theory)</option>
 		<option name="math.GT">math.GT (Geometric Topology)</option>
+		<option name="math.HO">math.HO (History and Overview)</option>
 		<option name="math.IT">math.IT (Information Theory)</option>
 		<option name="math.KT">math.KT (K-Theory and Homology)</option>
 		<option name="math.LO">math.LO (Logic)</option>
@@ -276,13 +288,13 @@ const journal_list = [
   {
     "tag": 1,
     "short_title": "\(M\times\Phi\), Ann. Math. Philos.",
-    "title": "\(M\times\Phi\). Annals of Mathematics and Philosophy",
+    "title": "M×Φ. Annals of Mathematics and Philosophy",
     "url": "https://mxphi.com/all-issues/"
   },
   {
     "tag": 2,
     "short_title": "\(p\)-Adic Numbers Ultrametric Anal. Appl.",
-    "title": "\(p\)-Adic Numbers, Ultrametric Analysis, and Applications",
+    "title": "p-Adic Numbers, Ultrametric Analysis, and Applications",
     "url": "https://link.springer.com/journal/12607/volumes-and-issues"
   },
   {
@@ -966,7 +978,7 @@ const journal_list = [
   {
     "tag": 116,
     "short_title": "Ann. \(K\)-Theory",
-    "title": "Annals of \(K\)-Theory",
+    "title": "Annals of K-Theory",
     "url": "http://msp.org/akt/about/journal/about.html"
   },
   {
@@ -6678,7 +6690,7 @@ const journal_list = [
   {
     "tag": 1068,
     "short_title": "Math. Models Methods Appl. Sci.",
-    "title": "M\(^3\)AS. Mathematical Models & Methods in Applied Sciences",
+    "title": "M³AS. Mathematical Models & Methods in Applied Sciences",
     "url": "https://www.worldscientific.com/loi/m3as"
   },
   {
@@ -8466,7 +8478,7 @@ const journal_list = [
   {
     "tag": 1366,
     "short_title": "S\(\vec{\text{e}}\)MA J.",
-    "title": "S\(\vec{\text{e}}\)MA Journal",
+    "title": "SeMA Journal",
     "url": "https://link.springer.com/journal/40324/volumes-and-issues"
   },
   {
