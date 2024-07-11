@@ -1,6 +1,7 @@
 <html>
 
 <head>
+  <title>Math Journal Straw Poll</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +15,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js" integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script> 
 function addRow() {
@@ -59,7 +59,12 @@ function delRow() {
 // Selectize for research area
 $(function() {
     $('#area').selectize({    
-	plugins: ['remove_button']
+	plugins: ['remove_button'],
+	labelField: 'area',
+	searchField: 'area',
+	valueField: 'tag',
+	options: arxiv_list,
+	create: false
    });
 
 });
@@ -78,6 +83,17 @@ $(function() {
 	create: false
    });
 
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $('.absbutton').click(function(){
+  var id = $(this).attr("id");
+    $('#abs-' + id).slideToggle('fast');
+    $('#and-' + id).toggle();
+    $('#or-' + id).toggle();
+  });
 });
 </script>
 
@@ -118,7 +134,8 @@ $(function() {
 	Poll submissions will be accepted from published mathematicians who have received their PhD and are actively involved in research.
 	See below for instructions on submitting your poll, or the <a href="../about">about page</a> for more information.
 	</p>
-	<h2>how to submit</h2>
+	<h2><a class="absbutton" id="how-submit" href="javascript:;">how to submit &ensp;<span id="or-how-submit" class="stretch" style="font-size:16px">&or;</span><span id="and-how-submit" class="stretch" style="font-size:16px;display:none">&and;</span></a></h2>
+	<div style="display:none;overflow-x:auto" id="abs-how-submit">
 	<p>
 	The poll is located at the bottom of this page. 
 	You must list at least one research area in which you work &mdash; the options correspond to the <a href="https://arxiv.org/archive/math">arXiv's math categories</a>.
@@ -129,7 +146,10 @@ $(function() {
 	The available journals are those currently indexed by <a href="https://zbmath.org/">zbMATH</a>.
 	If you notice a typo or a missing journal, please contact me.
 	</p>
-	<h2>how to get your hash</h2>
+	</div>
+
+	<h2><a class="absbutton" id="how-hash" href="javascript:;">how to get your hash &ensp;<span id="or-how-hash" class="stretch" style="font-size:16px">&or;</span><span id="and-how-hash" class="stretch" style="font-size:16px;display:none">&and;</span></a></h2>
+	<div style="display:none;overflow-x:auto" id="abs-how-hash">
 	<p>
 	In order to submit a response, please email <a data-name="mckean" data-domain="math.byu" data-tld="edu" href="#" class="cryptedmail" onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld"></a> from an official email address with your zbMATH Author ID (e.g. <a href="https://zbmath.org/authors/erdos.pal">erdos.pal</a>). The subject of the email should be "mjsp: submission request".
 	I will then email you with a hash to use for your submission.
@@ -146,46 +166,15 @@ $(function() {
 	The secondary goal is to automate my side of the process as much as possible.
 	Thank you for your help!
 	</p>
+	</div>
+
 	<h2>straw poll</h2>
 	<div id="strawpoll">
 	<h3>demographic info</h3>
 	<table>
 	<tr><td style="width:75px">Hash</td><td><input type="text" id="hash" name="hash" maxlength="30" style="width:200px" required></td></tr>
 	<tr><td style="width:75px">Research area(s)</td>
-	<td><select multiple="multiple" id="area" name="area[]" placeholder="Select your research area(s)" style="minwidth:300px" required>
-		<option name="math.AC">math.AC (Commutative Algebra)</option>
-		<option name="math.AG">math.AG (Algebraic Geometry)</option>
-		<option name="math.AP">math.AP (Analysis of PDEs)</option>
-		<option name="math.AT">math.AT (Algebraic Topology)</option>
-		<option name="math.CA">math.CA (Classical Analysis and ODEs)</option>
-		<option name="math.CO">math.CO (Combinatorics)</option>
-		<option name="math.CT">math.CT (Category Theory)</option>
-		<option name="math.CV">math.CV (Complex Variables)</option>
-		<option name="math.DG">math.DG (Differential Geometry)</option>
-		<option name="math.DS">math.DS (Dynamical Systems)</option>
-		<option name="math.FA">math.FA (Functional Analysis)</option>
-		<option name="math.GM">math.GM (General Mathematics)</option>
-		<option name="math.GN">math.GN (General Topology)</option>
-		<option name="math.GR">math.GR (Group Theory)</option>
-		<option name="math.GT">math.GT (Geometric Topology)</option>
-		<option name="math.HO">math.HO (History and Overview)</option>
-		<option name="math.IT">math.IT (Information Theory)</option>
-		<option name="math.KT">math.KT (K-Theory and Homology)</option>
-		<option name="math.LO">math.LO (Logic)</option>
-		<option name="math.MG">math.MG (Metric Geometry)</option>
-		<option name="math.MP">math.MP (Mathematical Physics)</option>
-		<option name="math.NA">math.NA (Numerical Analysis)</option>
-		<option name="math.NT">math.NT (Number Theory)</option>
-		<option name="math.OA">math.OA (Operator Algebras)</option>
-		<option name="math.OC">math.OC (Optimization and Control)</option>
-		<option name="math.PR">math.PR (Probability)</option>
-		<option name="math.QA">math.QA (Quantum Algebra)</option>
-		<option name="math.RA">math.RA (Rings and Algebras)</option>
-		<option name="math.RT">math.RT (Representation Theory)</option>
-		<option name="math.SG">math.SG (Symplectic Geometry)</option>
-		<option name="math.SP">math.SP (Spectral Theory)</option>
-		<option name="math.ST">math.ST (Statistics Theory)</option>
-	</select></td></tr>
+	<td><select multiple="multiple" id="area" name="area[]" placeholder="Select your research area(s)" style="minwidth:300px" required></select></td></tr>
 	</table>
 	<br>
 	<h3>journal rankings</h3>
@@ -248,7 +237,7 @@ function submission() {
 	const tids = ["#tier1","#tier2","#tier3","#tier4","#tier5","#tier6","#tier7","#tier8","#tier9","#tier10","#tier11","#tier12","#tier13","#tier14","#tier15","#tier16","#tier17","#tier18","#tier19","#tier20"];
 
 	var hash_val = document.getElementById('hash').value;
-	var area_val = $('#area').val().toString();
+	var area_val = $('#area').selectize()[0].selectize.getValue();
 	var tier_val = new Array(20).fill("");
 
 	if (area_val == "") {return alert("Please list at least one research area.");}
@@ -283,6 +272,41 @@ function submission() {
 </script>
 
 <script>
+const arxiv_list = [
+	{'tag':"math.AC",'area':"math.AC (Commutative Algebra)"},
+	{'tag':"math.AG",'area':"math.AG (Algebraic Geometry)"},
+	{'tag':"math.AP",'area':"math.AP (Analysis of PDEs)"},
+	{'tag':"math.AT",'area':"math.AT (Algebraic Topology)"},
+	{'tag':"math.CA",'area':"math.CA (Classical Analysis and ODEs)"},
+	{'tag':"math.CO",'area':"math.CO (Combinatorics)"},
+	{'tag':"math.CT",'area':"math.CT (Category Theory)"},
+	{'tag':"math.CV",'area':"math.CV (Complex Variables)"},
+	{'tag':"math.DG",'area':"math.DG (Differential Geometry)"},
+	{'tag':"math.DS",'area':"math.DS (Dynamical Systems)"},
+	{'tag':"math.FA",'area':"math.FA (Functional Analysis)"},
+	{'tag':"math.GM",'area':"math.GM (General Mathematics)"},
+	{'tag':"math.GN",'area':"math.GN (General Topology)"},
+	{'tag':"math.GR",'area':"math.GR (Group Theory)"},
+	{'tag':"math.GT",'area':"math.GT (Geometric Topology)"},
+	{'tag':"math.HO",'area':"math.HO (History and Overview)"},
+	{'tag':"math.IT",'area':"math.IT (Information Theory)"},
+	{'tag':"math.KT",'area':"math.KT (K-Theory and Homology)"},
+	{'tag':"math.LO",'area':"math.LO (Logic)"},
+	{'tag':"math.MG",'area':"math.MG (Metric Geometry)"},
+	{'tag':"math.MP",'area':"math.MP (Mathematical Physics)"},
+	{'tag':"math.NA",'area':"math.NA (Numerical Analysis)"},
+	{'tag':"math.NT",'area':"math.NT (Number Theory)"},
+	{'tag':"math.OA",'area':"math.OA (Operator Algebras)"},
+	{'tag':"math.OC",'area':"math.OC (Optimization and Control)"},
+	{'tag':"math.PR",'area':"math.PR (Probability)"},
+	{'tag':"math.QA",'area':"math.QA (Quantum Algebra)"},
+	{'tag':"math.RA",'area':"math.RA (Rings and Algebras)"},
+	{'tag':"math.RT",'area':"math.RT (Representation Theory)"},
+	{'tag':"math.SG",'area':"math.SG (Symplectic Geometry)"},
+	{'tag':"math.SP",'area':"math.SP (Spectral Theory)"},
+	{'tag':"math.ST",'area':"math.ST (Statistics Theory)"}
+];
+
 const journal_list = [
   {
     "tag": 1,
